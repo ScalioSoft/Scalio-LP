@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<title>Scalio — O fim das anotações perdidas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F5F2EC; font-family: "Inter Tight", Helvetica, Arial, sans-serif; }
+  a { color: inherit; }
+  ::selection { background: #E63027; color: #0A0A0A; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="scalio-lp-sections-1.jsx"></script>
+<script type="text/babel" src="scalio-lp-sections-2.jsx"></script>
+
+<script type="text/babel">
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "dark": false
+  }/*EDITMODE-END*/;
+
+  function App() {
+    const { TweaksPanel, useTweaks, TweakSection, TweakToggle } = window;
+    const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+    const dark = tweaks.dark;
+
+    return (
+      <>
+        <Nav dark={dark} />
+        <Hero dark={dark} />
+        <Marquee dark={dark} />
+        <Problem dark={dark} />
+        <Solution dark={dark} />
+        <HowItWorks dark={dark} />
+        <Features dark={dark} />
+        <UseCases dark={dark} />
+        <BigStat dark={dark} />
+        <Pricing dark={dark} />
+        <Waitlist dark={dark} />
+        <Footer dark={dark} />
+
+        <TweaksPanel title="Tweaks">
+          <TweakSection title="Tema">
+            <TweakToggle
+              label="Modo escuro"
+              value={dark}
+              onChange={v => setTweak('dark', v)}
+            />
+          </TweakSection>
+        </TweaksPanel>
+      </>
+    );
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(<App />);
+</script>
+</body>
+</html>
