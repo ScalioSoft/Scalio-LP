@@ -198,12 +198,12 @@ const BigStat = ({ dark }) => {
 const Pricing = ({ dark }) => {
   const t = useTheme(dark);
   const plans = [
-    { name: 'Starter', price: 'R$ 49', unit: '/usuário/mês', ideal: 'Equipes até 5 técnicos',
-      feats: ['Templates ilimitados', 'PDF automático', 'Modo offline', 'Suporte por e-mail'] },
-    { name: 'Pro', price: 'R$ 89', unit: '/usuário/mês', ideal: 'Operações de 5 a 50 técnicos', highlight: true,
-      feats: ['Tudo do Starter', 'Dashboard de gestor', 'Webhooks + CSV', 'Assinatura digital', 'Suporte prioritário'] },
-    { name: 'Enterprise', price: 'Custom', unit: '', ideal: '50+ técnicos · API completa',
-      feats: ['Tudo do Pro', 'API completa + SSO', 'Onboarding dedicado', 'SLA 99.9%', 'Custom roles & audit log'] },
+    { name: 'Básico', price: 'R$ 97', unit: '/mês', ideal: '1 técnico · 100 clientes · 30 relatórios IA/mês',
+      feats: ['Cadastro de clientes', 'Orçamento e pedidos', 'App web (PWA)', 'Notificação WhatsApp', 'Assinatura digital'] },
+    { name: 'Pro', price: 'R$ 297', unit: '/mês', ideal: '5 técnicos · 1.000 clientes · 200 relatórios IA/mês', highlight: true,
+      feats: ['Tudo do Básico', 'App nativo (Flutter)', 'Calendário + roteirização', 'Localização em tempo real', 'Estoque + recorrência', 'Emissão de NFCe/NFSe'] },
+    { name: 'Elite', price: 'R$ 597', unit: '/mês', ideal: '15 técnicos · clientes ilimitados · IA ilimitada',
+      feats: ['Tudo do Pro', 'Multi-CAPJ', 'Reconhecimento facial (ponto)', 'Auditoria completa', 'White-label', 'API + webhooks'] },
   ];
   return (
     <section id="Preços" style={{
@@ -220,6 +220,12 @@ const Pricing = ({ dark }) => {
       }}>
         SEM CONTRATO LONGO.<br/><span style={{ color: RED2 }}>SEM PEGADINHA.</span>
       </h2>
+      <div style={{
+        marginBottom: 18, fontSize: 12, color: t.mute,
+        fontFamily: 'JetBrains Mono, monospace', letterSpacing: '0.15em', textTransform: 'uppercase',
+      }}>
+        ▲ Técnico extra: R$ 47/mês · Notas fiscais excedentes: R$ 0,10–0,12/nota
+      </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, border: `1px solid ${t.fg}` }}>
         {plans.map((p, i) => (
           <div key={i} style={{
@@ -398,10 +404,11 @@ const Footer = ({ dark }) => {
     }}>
       <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr 1fr', gap: 28, paddingBottom: 36, borderBottom: `1px solid ${t.border}` }}>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <SymS size={32} bg={dark ? PAPER2 : BLACK2} fg={dark ? BLACK2 : PAPER2} accent={RED2} withBg={!dark} />
-            <Wordmark size={36} color={t.fg} accent={RED2} />
-          </div>
+          <img
+            src={dark ? 'assets/logos/scalio-lockup-light-2000.png' : 'assets/logos/scalio-lockup-dark-2000.png'}
+            alt="Scalio"
+            style={{ height: 44, width: 'auto', display: 'block' }}
+          />
           <div style={{ marginTop: 12, fontSize: 13, opacity: 0.7, lineHeight: 1.4, maxWidth: 320 }}>
             Field operations system. Padronização, registro e relatórios — sem retrabalho.
           </div>

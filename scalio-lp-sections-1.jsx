@@ -48,8 +48,23 @@ const SymS = ({ size = 32, fg, bg, accent = RED, withBg = true }) => (
 // =====================================================================
 // NAV
 // =====================================================================
+// Ícones para o toggle de tema
+const SunIcon = ({ size = 18, color }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+  </svg>
+);
+const MoonIcon = ({ size = 18, color }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+);
+
 const Nav = ({ dark, onToggle }) => {
   const t = useTheme(dark);
+  // Em tema claro, mostra logo escuro; em tema escuro, logo claro
+  const logoSrc = dark ? 'assets/logos/scalio-lockup-light-2000.png' : 'assets/logos/scalio-lockup-dark-2000.png';
   return (
     <nav style={{
       position: 'sticky', top: 0, zIndex: 50,
@@ -59,18 +74,33 @@ const Nav = ({ dark, onToggle }) => {
       display: 'flex', alignItems: 'center', gap: 24,
       fontFamily: '"Inter Tight", Helvetica, Arial, sans-serif',
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <SymS size={28} bg={dark ? PAPER : BLACK} fg={dark ? BLACK : PAPER} accent={RED} withBg={!dark} />
-        <span style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 800, fontSize: 18, letterSpacing: '-0.04em' }}>
-          scalio
-        </span>
-      </div>
+      <a href="#" style={{ display: 'flex', alignItems: 'center' }}>
+        <img
+          src={logoSrc}
+          alt="Scalio"
+          style={{ height: 32, width: 'auto', display: 'block' }}
+        />
+      </a>
       <div style={{ flex: 1 }} />
       <div style={{ display: 'flex', gap: 22, fontSize: 13, opacity: 0.75 }}>
-        {['Produto', 'Como funciona', 'Cases', 'Preços', 'FAQ'].map(t => (
-          <a key={t} href={`#${t}`} style={{ color: 'inherit', textDecoration: 'none' }}>{t}</a>
+        {['Produto', 'Como funciona', 'Cases', 'Preços', 'FAQ'].map(label => (
+          <a key={label} href={`#${label}`} style={{ color: 'inherit', textDecoration: 'none' }}>{label}</a>
         ))}
       </div>
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-label={dark ? 'Ativar modo claro' : 'Ativar modo escuro'}
+        title={dark ? 'Modo claro' : 'Modo escuro'}
+        style={{
+          background: 'transparent', border: `1px solid ${t.border}`,
+          color: t.fg, width: 36, height: 36, display: 'flex',
+          alignItems: 'center', justifyContent: 'center',
+          cursor: 'pointer', borderRadius: 0,
+        }}
+      >
+        {dark ? <SunIcon color={t.fg} /> : <MoonIcon color={t.fg} />}
+      </button>
       <a href="#waitlist" style={{
         background: RED, color: BLACK, textDecoration: 'none',
         padding: '10px 18px', fontWeight: 800, fontSize: 12,
