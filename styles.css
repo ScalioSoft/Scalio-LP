@@ -465,7 +465,11 @@ section { position: relative; }
   display: flex; flex-direction: column; position: relative; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 .plan:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -20px rgba(10,10,10,0.3); }
-.plan--feat { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.plan--feat { background: var(--ink); color: var(--cream); border-color: var(--ink); animation: planGlow 1.8s ease-in-out infinite alternate; }
+@keyframes planGlow {
+  from { box-shadow: 0 0 16px rgba(255, 58, 45, 0.35), 0 0 42px rgba(156, 18, 8, 0.4), 0 26px 60px -24px rgba(122, 6, 0, 0.5); }
+  to { box-shadow: 0 0 28px rgba(255, 58, 45, 0.6), 0 0 66px rgba(156, 18, 8, 0.62), 0 26px 60px -20px rgba(122, 6, 0, 0.72); }
+}
 .plan__badge { position: absolute; top: 0; right: 24px; transform: translateY(-50%); background: var(--wine); color: var(--cream); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 12px; }
 .plan__name { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 6px; }
 .plan__price { font-size: clamp(38px, 4vw, 52px); font-weight: 700; letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; }
