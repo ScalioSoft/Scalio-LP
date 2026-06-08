@@ -133,6 +133,20 @@ section { position: relative; }
 .btn .arrow { transition: transform 0.3s var(--ease); }
 .btn:hover .arrow { transform: translateX(4px); }
 
+/* glowing CTA */
+.btn--glow { position: relative; isolation: isolate; }
+.btn--glow::before {
+  content: ""; position: absolute; inset: -3px; z-index: -1; border-radius: inherit;
+  background: linear-gradient(120deg, var(--wine), var(--wine-bright) 45%, #ff3a2d 70%, var(--wine));
+  filter: blur(12px); opacity: 0.6;
+  animation: btnGlow 2.6s ease-in-out infinite;
+}
+.btn--glow:hover::before { opacity: 0.95; filter: blur(16px); }
+@keyframes btnGlow {
+  0%, 100% { opacity: 0.45; filter: blur(10px); }
+  50%      { opacity: 0.8;  filter: blur(16px); }
+}
+
 .nav__toggle { display: none; }
 
 /* ============================================================
