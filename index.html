@@ -2,85 +2,540 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
-<title>Scalio — O fim das anotações perdidas</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" sizes="256x256" href="assets/logos/scalio-symbol-dark-256.png" media="(prefers-color-scheme: light)">
-<link rel="icon" type="image/png" sizes="512x512" href="assets/logos/scalio-symbol-light-512.png" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="256x256" href="assets/logos/scalio-symbol-dark-256.png">
-<link rel="apple-touch-icon" sizes="512x512" href="assets/logos/scalio-symbol-dark-512.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: #F5F2EC; font-family: "Inter Tight", Helvetica, Arial, sans-serif; }
-  a { color: inherit; }
-  ::selection { background: #E63027; color: #0A0A0A; }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Scalio — O fim dos processos perdidos</title>
+<meta name="description" content="A Scalio padroniza, registra e gera relatórios de campo com IA. Feito para técnicos, instaladores e equipes que perdem tempo com anotação manual." />
+<link rel="icon" type="image/png" href="assets/elemento-vinho.png" />
+<link rel="apple-touch-icon" href="assets/elemento-vinho.png" />
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div id="root"></div>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<!-- ================= NAV ================= -->
+<nav class="nav" id="nav">
+  <a href="#top" aria-label="Scalio"><img class="nav__logo" src="assets/logo-bege.png" alt="Scalio" /></a>
+  <div class="nav__links">
+    <a href="#solucao">A Solução</a>
+    <a href="#passos">Como Funciona</a>
+    <a href="#planos">Valores</a>
+  </div>
+  <div class="nav__right">
+    <a class="btn btn--ghost" href="#waitlist">Saiba Mais</a>
+  </div>
+</nav>
 
-<script type="text/babel" src="tweaks-panel.jsx"></script>
-<script type="text/babel" src="scalio-lp-sections-1.jsx"></script>
-<script type="text/babel" src="scalio-lp-sections-2.jsx"></script>
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="hero__grid"></div>
+  <div class="hero__glow"></div>
+  <img class="hero__elem" src="assets/elemento-vinho.png" alt="" aria-hidden="true" />
+  <div class="wrap hero__inner">
+    <div class="hero__badge reveal in">
+      <span class="dot"></span>
+      <span>Em breve · <b>Entre antes de todo mundo</b></span>
+    </div>
+    <h1 class="reveal in">O fim dos<br />processos <span class="accent">perdidos</span></h1>
+    <p class="hero__sub reveal in reveal-d1">
+      A Scalio <b>padroniza, registra e gera relatórios de campo com IA.</b>
+      Feito para técnicos, instaladores e equipes que perdem tempo e dinheiro com anotação manual.
+    </p>
+    <div class="hero__cta reveal in reveal-d2">
+      <a class="btn btn--solid btn--lg" href="#waitlist">Entrar na lista <span class="arrow">→</span></a>
+      <a class="btn btn--ghost btn--lg" href="#solucao">Ver como funciona</a>
+    </div>
+  </div>
+</header>
 
-<script type="text/babel">
-  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-    "dark": false
-  }/*EDITMODE-END*/;
+<!-- ================= TICKER ================= -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track" id="ticker">
+    <span class="ticker__item">Relatórios em tempo real <span class="star">✦</span></span>
+    <span class="ticker__item">Padronização <span class="star">✦</span></span>
+    <span class="ticker__item">PDF automático <span class="star">✦</span></span>
+    <span class="ticker__item">Zero retrabalho <span class="star">✦</span></span>
+  </div>
+</div>
 
-  function App() {
-    const { TweaksPanel, useTweaks, TweakSection, TweakToggle } = window;
-    const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+<!-- ================= SEÇÃO 1 — CAOS ================= -->
+<section class="sec chaos">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <div class="eyebrow"><span class="tick"></span> O problema</div>
+      <h2 class="sec__title">A operação vira um <em>caos</em> quando não tem sistema</h2>
+    </div>
+    <div class="problems">
+      <article class="problem reveal">
+        <div class="problem__num">01</div>
+        <p class="problem__text">O dado se perde antes de chegar ao escritório.</p>
+        <div class="problem__glitch">×</div>
+      </article>
+      <article class="problem reveal reveal-d1">
+        <div class="problem__num">02</div>
+        <p class="problem__text">Cada técnico, um padrão. Cada visita vira um relatório diferente.</p>
+        <div class="problem__glitch">×</div>
+      </article>
+      <article class="problem reveal reveal-d2">
+        <div class="problem__num">03</div>
+        <p class="problem__text">Retrabalho silencioso, custo mais alto.</p>
+        <div class="problem__glitch">×</div>
+      </article>
+    </div>
+  </div>
+</section>
 
-    // Hidrata do localStorage no primeiro render (sobrescreve TWEAK_DEFAULTS)
-    React.useEffect(() => {
-      const saved = localStorage.getItem('scalio-dark');
-      if (saved !== null) setTweak('dark', saved === '1');
-    }, []);
+<!-- ================= SEÇÃO 2 — SOLUÇÃO ================= -->
+<section class="sec solution" id="solucao">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <div class="eyebrow"><span class="tick"></span> A solução</div>
+    </div>
+    <div class="solution__intro">
+      <h2 class="reveal">Uma <em>única</em> solução</h2>
+      <p class="reveal reveal-d1">
+        A Scalio é o <b>sistema operacional do trabalho de campo.</b> Templates por tipo de visita,
+        captura estruturada, foto + geolocalização automáticas, e o relatório entregue ao cliente
+        antes do técnico subir no carro.
+      </p>
+    </div>
 
-    const dark = tweaks.dark;
-    const toggleDark = () => {
-      const next = !dark;
-      setTweak('dark', next);
-      localStorage.setItem('scalio-dark', next ? '1' : '0');
-    };
+    <!-- Feature 1 — App field -->
+    <div class="feature feature--rev">
+      <div class="feature__media reveal">
+        <div class="phone">
+          <div class="phone__notch"></div>
+          <div class="phone__screen">
+            <div class="app__bar">
+              <div>
+                <h4>Instalação · Visita #2841</h4>
+                <div class="meta">GPS ✓ · 14:02 · Offline-ready</div>
+              </div>
+            </div>
+            <div style="padding:0 18px;background:var(--ink);">
+              <div class="app__progress"><i id="appProg"></i></div>
+            </div>
+            <div class="app__body">
+              <div class="app__step done"><span class="box">✓</span><span class="label">Identificação do local</span><span class="tic">geo</span></div>
+              <div class="app__step done"><span class="box">✓</span><span class="label">Foto — antes</span><span class="tic">2</span></div>
+              <div class="app__step active"><span class="box"></span><span class="label">Serial do equipamento</span><span class="tic">obrig.</span></div>
+              <div class="app__step"><span class="box"></span><span class="label">Foto — depois</span><span class="tic">0/2</span></div>
+              <div class="app__step"><span class="box"></span><span class="label">Assinatura do cliente</span><span class="tic">obrig.</span></div>
+              <div class="app__photos">
+                <div class="app__photo">ANTES</div>
+                <div class="app__photo">DEPOIS</div>
+              </div>
+            </div>
+            <div class="app__cta locked">Finalizar — 2 campos restantes</div>
+          </div>
+        </div>
+      </div>
+      <div class="feature__body">
+        <div class="feature__tag reveal">App field</div>
+        <h3 class="reveal reveal-d1">O técnico só avança quando está completo</h3>
+        <p class="reveal reveal-d2">
+          Checklist obrigatório por tipo de serviço. O sistema só finaliza com <b>todos os dados</b>:
+          foto antes e depois, geolocalização, serial e assinatura.
+        </p>
+        <ul class="feature__list reveal reveal-d3">
+          <li><span class="chk">✓</span> Captura estruturada, campo a campo</li>
+          <li><span class="chk">✓</span> Funciona online ou offline</li>
+          <li><span class="chk">✓</span> Nada fecha sem comprovação</li>
+        </ul>
+      </div>
+    </div>
 
-    return (
-      <>
-        <Nav dark={dark} onToggle={toggleDark} />
-        <Hero dark={dark} />
-        <Marquee dark={dark} />
-        <Problem dark={dark} />
-        <Solution dark={dark} />
-        <HowItWorks dark={dark} />
-        <Features dark={dark} />
-        <UseCases dark={dark} />
-        <BigStat dark={dark} />
-        <Pricing dark={dark} />
-        <Waitlist dark={dark} />
-        <Footer dark={dark} />
+    <!-- Feature 2 — PDF report -->
+    <div class="feature">
+      <div class="feature__media reveal">
+        <div class="report">
+          <div class="report__stamp">VALIDADO</div>
+          <div class="report__head">
+            <img class="logo" src="assets/logo-vinho.png" alt="Scalio" />
+            <div class="id">RELATÓRIO #2841<br />08/06/2026 · 14:37<br />Téc. M. Andrade</div>
+          </div>
+          <div class="report__title">Instalação concluída</div>
+          <div class="report__row"><span>Cliente</span><b>Condomínio Aurora</b></div>
+          <div class="report__row"><span>Endereço · geo</span><b>−23.561, −46.655</b></div>
+          <div class="report__row"><span>Equipamento · serial</span><b>SCL-44821-X</b></div>
+          <div class="report__imgs">
+            <div class="report__img"><span>ANTES</span></div>
+            <div class="report__img"><span>DEPOIS</span></div>
+          </div>
+          <div class="report__sign">
+            <div>
+              <div class="sig">Cliente</div>
+              <div style="font-size:8px;color:var(--ink-dim);margin-top:4px;">Assinatura digital · ZapSign</div>
+            </div>
+            <div style="font-size:9px;color:var(--ink-dim);text-align:right;">Enviado<br /><b style="color:var(--wine)">em 12s</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="feature__body">
+        <div class="feature__tag reveal">PDF report · auto-gerado</div>
+        <h3 class="reveal reveal-d1">O cliente recebe na hora</h3>
+        <p class="reveal reveal-d2">
+          Relatório profissional gerado <b>automaticamente</b> ao fechar a visita. Fotos antes e depois,
+          métricas e assinatura digital. Por e-mail, WhatsApp ou portal — tudo documentado em tempo real.
+        </p>
+        <ul class="feature__list reveal reveal-d3">
+          <li><span class="chk">✓</span> Padrão à altura da sua empresa</li>
+          <li><span class="chk">✓</span> Entregue antes do técnico ir embora</li>
+          <li><span class="chk">✓</span> Geo e assinatura embutidos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <TweaksPanel title="Tweaks">
-          <TweakSection title="Tema">
-            <TweakToggle
-              label="Modo escuro"
-              value={dark}
-              onChange={v => setTweak('dark', v)}
-            />
-          </TweakSection>
-        </TweaksPanel>
-      </>
-    );
+<!-- ================= SEÇÃO 3 — 4 PASSOS ================= -->
+<section class="sec steps" id="passos">
+  <div class="wrap">
+    <div class="sec__head reveal">
+      <div class="eyebrow"><span class="tick"></span> Como funciona</div>
+      <h2 class="sec__title">Quatro passos.<br />Zero improviso.</h2>
+    </div>
+    <div class="steps__grid">
+      <article class="step reveal">
+        <div class="step__bignum">01</div>
+        <div class="step__n">CONFIGURE</div>
+        <h3>Configure o template</h3>
+        <p>Crie checklists por tipo de serviço: o que é obrigatório, o que pede foto, o que precisa de assinatura. Uma vez. Todo mundo segue.</p>
+        <span class="step__bar"></span>
+      </article>
+      <article class="step reveal reveal-d1">
+        <div class="step__bignum">02</div>
+        <div class="step__n">ABRA A VISITA</div>
+        <h3>Técnico abre no app</h3>
+        <p>Online ou offline. GPS, hora e operador capturados automaticamente. Nada sem comprovação.</p>
+        <span class="step__bar"></span>
+      </article>
+      <article class="step reveal reveal-d2">
+        <div class="step__bignum">03</div>
+        <div class="step__n">PREENCHA</div>
+        <h3>Campo preenchido em ordem</h3>
+        <p>O sistema só fecha quando estiver tudo documentado. Sem pulos, sem atalho.</p>
+        <span class="step__bar"></span>
+      </article>
+      <article class="step reveal reveal-d3">
+        <div class="step__bignum">04</div>
+        <div class="step__n">ENTREGUE</div>
+        <h3>Relatório sai sozinho</h3>
+        <p>Padronizado, com fotos, métricas e assinatura. Cliente recebe por e-mail. Gestor vê no dashboard. NF emitida em seguida.</p>
+        <span class="step__bar"></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SEÇÃO 4 — DIFERENCIAL IA ================= -->
+<section class="sec diff">
+  <div class="wrap">
+    <div class="diff__head">
+      <h2 class="reveal">O diferencial <em>Scalio</em></h2>
+      <p class="reveal reveal-d1">
+        O técnico grava um <b>áudio de 30 segundos</b> descrevendo o que fez. A IA transcreve e gera um
+        relatório formatado, padronizado, com linguagem profissional. <b>Ele não escreve relatório — só executa e fala.</b>
+        Isso ataca a dor número 1 em campo: a documentação que nunca acontece.
+      </p>
+    </div>
+    <div class="flow">
+      <article class="flow__node reveal">
+        <div class="flow__icon">●</div>
+        <div class="flow__step">PASSO 01</div>
+        <h4>Técnico grava o áudio</h4>
+        <p>30 segundos descrevendo o serviço executado, direto no app.</p>
+        <div class="flow__arrow">→</div>
+      </article>
+      <article class="flow__node reveal reveal-d1">
+        <div class="flow__icon">~</div>
+        <div class="flow__step">PASSO 02</div>
+        <h4>Whisper transcreve</h4>
+        <p>O áudio vira texto estruturado em segundos, automaticamente.</p>
+        <div class="flow__arrow">→</div>
+      </article>
+      <article class="flow__node reveal reveal-d2">
+        <div class="flow__icon">▢</div>
+        <div class="flow__step">PASSO 03</div>
+        <h4>IA formata o relatório</h4>
+        <p>Linguagem profissional, campos preenchidos, padrão à altura da empresa.</p>
+        <div class="flow__arrow">→</div>
+      </article>
+      <article class="flow__node reveal reveal-d3">
+        <div class="flow__icon">↗</div>
+        <div class="flow__step">PASSO 04</div>
+        <h4>PDF enviado na hora</h4>
+        <p>E-mail, WhatsApp ou portal. Com assinatura e geo embutidos.</p>
+        <div class="flow__arrow">→</div>
+      </article>
+      <article class="flow__node reveal reveal-d4">
+        <div class="flow__icon">⊞</div>
+        <div class="flow__step">PASSO 05</div>
+        <h4>Auditoria completa</h4>
+        <p>Log de tudo que mudou, por quem e quando. Conformidade para crescer sem medo de processo.</p>
+        <div class="flow__arrow">→</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SEÇÃO 5 — STATS ================= -->
+<section class="sec stats">
+  <div class="wrap">
+    <div class="stats__hero">
+      <div class="stats__big reveal" data-count="90" data-suffix="%">0<span>%</span></div>
+      <div class="reveal reveal-d1">
+        <p>É o quanto a Scalio pode <b>reduzir o retrabalho de campo.</b></p>
+        <p class="small">Estimativa baseada em pilotos com equipes de instalação. Menos volta, menos ligação, menos planilha. Mais visitas concluídas no mesmo dia.</p>
+      </div>
+    </div>
+    <div class="stats__grid">
+      <div class="stat reveal">
+        <div class="stat__v">~<em>3h</em></div>
+        <div class="stat__l">economizadas por técnico, por dia</div>
+      </div>
+      <div class="stat reveal reveal-d1">
+        <div class="stat__v"><em>1</em> dia</div>
+        <div class="stat__l">para configurar todos os templates</div>
+      </div>
+      <div class="stat reveal reveal-d2">
+        <div class="stat__v"><em>0</em></div>
+        <div class="stat__l">planilhas paralelas — uma só fonte de verdade</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SEÇÃO 6 — PLANOS ================= -->
+<section class="sec pricing" id="planos">
+  <div class="wrap">
+    <div class="sec__head reveal" style="margin-bottom:32px;">
+      <div class="eyebrow"><span class="tick"></span> Investimento</div>
+    </div>
+    <div class="pricing__top">
+      <h2 class="reveal">Escolha o seu<br />ponto de partida</h2>
+      <div class="pricing__addon reveal reveal-d1">
+        Técnico extra: <b>R$47/mês</b><br />
+        Notas fiscais excedentes: <b>R$0,12/nota</b>
+      </div>
+    </div>
+
+    <div class="plans">
+      <!-- Básico -->
+      <article class="plan reveal">
+        <div class="plan__name">Básico</div>
+        <div class="plan__price">R$97<span>/mês</span></div>
+        <div class="plan__limits">1 técnico · 100 clientes · 30 relatórios IA/mês</div>
+        <p class="plan__quote">"Trabalho sozinho, quero parecer profissional."</p>
+        <ul class="plan__feats">
+          <li><span class="ic">✓</span> Cadastro de clientes</li>
+          <li><span class="ic">✓</span> Orçamento e pedidos</li>
+          <li><span class="ic">✓</span> App web (PWA)</li>
+          <li><span class="ic">✓</span> Notificação WhatsApp</li>
+          <li><span class="ic">✓</span> Assinatura digital</li>
+        </ul>
+        <ul class="plan__nots">
+          <li><span class="ic">—</span> App mobile nativo</li>
+          <li><span class="ic">—</span> Localização em tempo real</li>
+          <li><span class="ic">—</span> NF-e · Estoque · Auditoria</li>
+        </ul>
+        <button class="plan__btn">Entrar na lista <span class="arrow">→</span></button>
+      </article>
+
+      <!-- Pro -->
+      <article class="plan plan--feat reveal reveal-d1">
+        <div class="plan__badge">Recomendado</div>
+        <div class="plan__name">Pro</div>
+        <div class="plan__price">R$297<span>/mês</span></div>
+        <div class="plan__limits">5 técnicos · 1.000 clientes · 300 relatórios IA/mês</div>
+        <p class="plan__quote">"Tenho equipe, preciso delegar e acompanhar."</p>
+        <ul class="plan__feats">
+          <li><span class="ic">✓</span> Tudo do Básico</li>
+          <li><span class="ic">✓</span> App nativo (Flutter)</li>
+          <li><span class="ic">✓</span> Calendário e roteirização</li>
+          <li><span class="ic">✓</span> Localização em tempo real</li>
+          <li><span class="ic">✓</span> Estoque e recorrência</li>
+          <li><span class="ic">✓</span> Emissão de NFC-e / NFS-e</li>
+          <li><span class="ic">✓</span> Dashboard completo · PDF exportável</li>
+        </ul>
+        <ul class="plan__nots">
+          <li><span class="ic">—</span> Auditoria · Facial · Multi-CNPJ</li>
+        </ul>
+        <button class="plan__btn">Entrar na lista <span class="arrow">→</span></button>
+      </article>
+
+      <!-- Elite -->
+      <article class="plan reveal reveal-d2">
+        <div class="plan__name">Elite</div>
+        <div class="plan__price">R$597<span>/mês</span></div>
+        <div class="plan__limits">15 técnicos · Clientes ilimitados · IA ilimitada</div>
+        <p class="plan__quote">"Múltiplos CNPJs, NF-e, controle fino."</p>
+        <ul class="plan__feats">
+          <li><span class="ic">✓</span> Tudo do Pro</li>
+          <li><span class="ic">✓</span> Anti-CAF (reconhecimento facial)</li>
+          <li><span class="ic">✓</span> Auditoria completa</li>
+          <li><span class="ic">✓</span> White-label</li>
+          <li><span class="ic">✓</span> API + webhooks</li>
+          <li><span class="ic">✓</span> Multi-CNPJ por workspace</li>
+          <li><span class="ic">✓</span> Campanhas WhatsApp em massa</li>
+          <li><span class="ic">✓</span> TEF integrado · pagamento em campo</li>
+        </ul>
+        <button class="plan__btn">Entrar na lista <span class="arrow">→</span></button>
+      </article>
+    </div>
+
+    <!-- Integrações -->
+    <div class="integ">
+      <div class="integ__lbl reveal">Integrações</div>
+      <div class="integ__grid">
+        <div class="integ__cell reveal"><div class="n">FocusNFe</div><div class="d">Emissão fiscal</div></div>
+        <div class="integ__cell reveal"><div class="n">Asaas · AbacatePay</div><div class="d">Cobranças · PIX · Boleto</div></div>
+        <div class="integ__cell reveal"><div class="n">ZapSign</div><div class="d">Assinatura digital</div></div>
+        <div class="integ__cell reveal"><div class="n">Evolution API</div><div class="d">WhatsApp em VPS</div></div>
+        <div class="integ__cell reveal reveal-d1"><div class="n">Google Maps · Mapbox</div><div class="d">Geo · ETA · Rotas</div></div>
+        <div class="integ__cell reveal reveal-d1"><div class="n">Unico / CAF</div><div class="d">Biometria facial</div></div>
+        <div class="integ__cell reveal reveal-d1"><div class="n">BrasilAPI · ViaCEP</div><div class="d">Dados automáticos</div></div>
+        <div class="integ__cell reveal reveal-d1"><div class="n">Whisper · Claude</div><div class="d">IA · Transcrição · Relatório</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SEÇÃO 7 — FINAL CTA ================= -->
+<section class="sec final" id="waitlist">
+  <div class="final__glow"></div>
+  <div class="wrap">
+    <img class="final__elem" src="assets/elemento-bege.png" alt="" aria-hidden="true" />
+    <div class="final__inner">
+      <h2 class="reveal">Adquira <em>antes</em><br />de todo mundo</h2>
+      <p class="reveal reveal-d1">Suporte exclusivo e direto. Entre na lista e seja um dos primeiros a operar sem processos perdidos.</p>
+      <form class="waitlist reveal reveal-d2" id="waitlistForm" novalidate>
+        <input type="email" id="email" placeholder="seu@email.com" aria-label="Seu e-mail" />
+        <button class="btn btn--wine btn--lg" type="submit">Entrar na lista <span class="arrow">→</span></button>
+      </form>
+      <div class="waitlist__msg reveal reveal-d2" id="waitlistMsg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <img class="footer__logo" src="assets/logo-bege.png" alt="Scalio" />
+        <p>O sistema operacional do trabalho de campo. Padroniza, registra e entrega — com IA.</p>
+      </div>
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h5>Produto</h5>
+          <a href="#solucao">A Solução</a>
+          <a href="#passos">Como Funciona</a>
+          <a href="#planos">Valores</a>
+        </div>
+        <div class="footer__col">
+          <h5>Empresa</h5>
+          <a href="#top">Sobre</a>
+          <a href="#waitlist">Contato</a>
+          <a href="#waitlist">Lista de espera</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Scalio. Todos os direitos reservados.</span>
+      <span>Termos de uso · Política de privacidade</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ---- Nav scroll state ---- */
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---- Duplicate ticker for seamless loop ---- */
+  const ticker = document.getElementById('ticker');
+  ticker.innerHTML += ticker.innerHTML;
+
+  /* ---- Reveal on scroll ---- */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+        if (e.target.dataset.count) animateCount(e.target);
+        if (e.target.classList.contains('step')) {
+          e.target.querySelector('.step__bar').style.width = '100%';
+        }
+        if (e.target.querySelector && e.target.querySelector('#appProg')) {
+          e.target.querySelector('#appProg').style.width = '60%';
+        }
+      }
+    });
+  }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  /* progress bar inside phone when its media reveals */
+  const phoneMedia = document.querySelector('.feature--rev .feature__media');
+  if (phoneMedia) {
+    const pio = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          document.getElementById('appProg').style.width = '60%';
+          pio.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    pio.observe(phoneMedia);
   }
 
-  const root = ReactDOM.createRoot(document.getElementById('root'));
-  root.render(<App />);
+  /* ---- Count up ---- */
+  function animateCount(el) {
+    const target = parseFloat(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const dur = 1400; const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const val = Math.round(eased * target);
+      el.innerHTML = val + '<span>' + suffix + '</span>';
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  /* ---- Waitlist validation ---- */
+  const form = document.getElementById('waitlistForm');
+  const email = document.getElementById('email');
+  const msg = document.getElementById('waitlistMsg');
+  form.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const v = email.value.trim();
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    msg.className = 'waitlist__msg';
+    if (!valid) {
+      email.classList.add('err');
+      msg.classList.add('bad');
+      msg.textContent = 'Digite um e-mail válido para entrar na lista.';
+      return;
+    }
+    email.classList.remove('err');
+    msg.classList.add('ok');
+    msg.textContent = '✓ Você está na lista. Em breve entramos em contato — antes de todo mundo.';
+    email.value = '';
+    email.disabled = true;
+    form.querySelector('button').textContent = 'Confirmado ✓';
+  });
+
+  /* plan CTAs jump to waitlist */
+  document.querySelectorAll('.plan__btn').forEach((b) => {
+    b.addEventListener('click', () => {
+      const target = document.getElementById('waitlist');
+      const y = target.getBoundingClientRect().top + window.scrollY - 40;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      setTimeout(() => email.focus({ preventScroll: true }), 600);
+    });
+  });
 </script>
 </body>
 </html>

@@ -1,25 +1,34 @@
 # Scalio — Landing Page
 
-Landing page institucional do Scalio + Brand Book v1.0.
+Landing page institucional do Scalio.
 
-Stack mínima e estática: HTML + React 18 (UMD) + JSX transpilado em runtime via `@babel/standalone`. Sem build, sem bundler, sem dependências de pacote — basta servir os arquivos.
+Stack 100% estática: HTML + CSS puro, sem build, sem bundler, sem JavaScript de framework. Apenas um `<script>` inline para animações de scroll, ticker e validação da waitlist.
 
 ## Estrutura
 
-| Arquivo | Função |
+| Arquivo / Pasta | Função |
 | --- | --- |
 | `index.html` | Landing page principal (rota `/`) |
-| `brand-book.html` | Brand Book interativo (DesignCanvas com seções e artboards) |
-| `brand-book-print.html` | Versão paginada do Brand Book com auto-`window.print()` |
-| `tweaks-panel.jsx` | Painel de tweaks reutilizável (host protocol de edit mode) |
-| `scalio-lp-sections-1.jsx` | LP — Nav, Hero, Marquee, Problem, Solution, HowItWorks |
-| `scalio-lp-sections-2.jsx` | LP — Features, UseCases, BigStat, Pricing, Waitlist, Footer |
-| `design-canvas.jsx` | Componentes `DesignCanvas`, `DCSection`, `DCArtboard` (Brand Book) |
-| `scalio-final.jsx` | Páginas do Brand Book (`Cover`, `LogoPage`, `Construction`, `ColorType`, `DoDont`, `Applications`, `Closing`) |
+| `styles.css` | Todo o sistema visual (marca, layout, animações, responsivo) |
+| `assets/fonts/` | SF Pro Display (Regular, Medium, Bold, LightItalic) |
+| `assets/logo-*.png` | Logos da marca (bege, preta, vinho) |
+| `assets/elemento-*.png` | Símbolo/elemento da marca (bege, cinza, preto, vinho) |
+
+## Marca
+
+| Token | Valor |
+| --- | --- |
+| Vinho | `#7A0600` |
+| Vinho claro | `#9C1208` |
+| Creme | `#FFF0D2` |
+| Ink (fundo) | `#0A0A0A` |
+| Cinza | `#939393` |
+
+Tipografia: **SF Pro Display**.
 
 ## Como rodar localmente
 
-Como o `index.html` carrega arquivos `.jsx` via `<script src>`, é necessário um servidor HTTP (não funciona abrindo o arquivo via `file://` por causa de CORS).
+Como o `index.html` é estático, abrir via `file://` funciona, mas o ideal é servir por HTTP para as fontes carregarem corretamente:
 
 ```bash
 # Python 3
@@ -33,4 +42,4 @@ Depois abra `http://localhost:8000/`.
 
 ## Deploy
 
-Por ser 100% estático, qualquer host serve: GitHub Pages, Vercel, Netlify, Cloudflare Pages, S3 + CloudFront. Para GitHub Pages basta habilitar Pages na branch `main`, pasta raiz.
+Por ser 100% estático, qualquer host serve: GitHub Pages, Vercel, Netlify, Cloudflare Pages. Para GitHub Pages basta habilitar Pages na branch `main`, pasta raiz.
