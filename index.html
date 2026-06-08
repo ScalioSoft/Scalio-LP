@@ -139,39 +139,13 @@
       </p>
     </div>
 
-    <!-- Feature 1 — App field -->
-    <div class="feature feature--rev">
-      <div class="feature__media reveal">
-        <div class="phone">
-          <div class="phone__notch"></div>
-          <div class="phone__screen">
-            <div class="app__bar">
-              <div>
-                <h4>Instalação · Visita #2841</h4>
-                <div class="meta">GPS ✓ · 14:02 · Offline-ready</div>
-              </div>
-            </div>
-            <div style="padding:0 18px;background:var(--ink);">
-              <div class="app__progress"><i id="appProg"></i></div>
-            </div>
-            <div class="app__body">
-              <div class="app__step done"><span class="box">✓</span><span class="label">Identificação do local</span><span class="tic">geo</span></div>
-              <div class="app__step done"><span class="box">✓</span><span class="label">Foto — antes</span><span class="tic">2</span></div>
-              <div class="app__step active"><span class="box"></span><span class="label">Serial do equipamento</span><span class="tic">obrig.</span></div>
-              <div class="app__step"><span class="box"></span><span class="label">Foto — depois</span><span class="tic">0/2</span></div>
-              <div class="app__step"><span class="box"></span><span class="label">Assinatura do cliente</span><span class="tic">obrig.</span></div>
-              <div class="app__photos">
-                <div class="app__photo">ANTES</div>
-                <div class="app__photo">DEPOIS</div>
-              </div>
-            </div>
-            <div class="app__cta locked">Finalizar — 2 campos restantes</div>
-          </div>
-        </div>
-      </div>
-      <div class="feature__body">
+    <!-- Feature 1 — App field (somente texto) -->
+    <div class="feature feature--text">
+      <div class="feature__head">
         <div class="feature__tag reveal">App field</div>
         <h3 class="reveal reveal-d1">O técnico só avança quando está completo</h3>
+      </div>
+      <div class="feature__body">
         <p class="reveal reveal-d2">
           Checklist obrigatório por tipo de serviço. O sistema só finaliza com <b>todos os dados</b>:
           foto antes e depois, geolocalização, serial e assinatura.
@@ -516,27 +490,10 @@
         if (e.target.classList.contains('step')) {
           e.target.querySelector('.step__bar').style.width = '100%';
         }
-        if (e.target.querySelector && e.target.querySelector('#appProg')) {
-          e.target.querySelector('#appProg').style.width = '60%';
-        }
       }
     });
   }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-
-  /* progress bar inside phone when its media reveals */
-  const phoneMedia = document.querySelector('.feature--rev .feature__media');
-  if (phoneMedia) {
-    const pio = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          document.getElementById('appProg').style.width = '60%';
-          pio.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    pio.observe(phoneMedia);
-  }
 
   /* ---- Count up ---- */
   function animateCount(el) {
