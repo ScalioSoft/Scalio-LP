@@ -133,20 +133,6 @@ section { position: relative; }
 .btn .arrow { transition: transform 0.3s var(--ease); }
 .btn:hover .arrow { transform: translateX(4px); }
 
-/* glowing CTA */
-.btn--glow { position: relative; isolation: isolate; }
-.btn--glow::before {
-  content: ""; position: absolute; inset: -3px; z-index: -1; border-radius: inherit;
-  background: linear-gradient(120deg, var(--wine), var(--wine-bright) 45%, #ff3a2d 70%, var(--wine));
-  filter: blur(12px); opacity: 0.6;
-  animation: btnGlow 2.6s ease-in-out infinite;
-}
-.btn--glow:hover::before { opacity: 0.95; filter: blur(16px); }
-@keyframes btnGlow {
-  0%, 100% { opacity: 0.45; filter: blur(10px); }
-  50%      { opacity: 0.8;  filter: blur(16px); }
-}
-
 .nav__toggle { display: none; }
 
 /* ============================================================
@@ -482,8 +468,19 @@ section { position: relative; }
 .final__glow { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(122,6,0,0.4), transparent 70%); }
 .final__elem { width: clamp(80px, 12vw, 140px); margin: 0 auto 30px; position: relative; z-index: 2; animation: floaty 7s ease-in-out infinite; }
 .final__inner { position: relative; z-index: 2; max-width: 900px; margin-inline: auto; }
-.final h2 { font-size: clamp(40px, 8vw, 120px); font-weight: 700; line-height: 0.9; letter-spacing: -0.04em; margin-bottom: 20px; }
-.final h2 em { font-style: italic; font-weight: 300; color: var(--wine-bright); }
+.final h2 {
+  font-size: clamp(40px, 8vw, 120px); font-weight: 700; line-height: 0.9; letter-spacing: -0.04em; margin-bottom: 20px;
+  text-shadow: 0 0 24px rgba(156,18,8,0.35), 0 0 60px rgba(122,6,0,0.3);
+  animation: textGlow 3.2s ease-in-out infinite;
+}
+.final h2 em {
+  font-style: italic; font-weight: 300; color: var(--wine-bright);
+  text-shadow: 0 0 28px rgba(255,58,45,0.55), 0 0 70px rgba(156,18,8,0.5);
+}
+@keyframes textGlow {
+  0%, 100% { text-shadow: 0 0 20px rgba(156,18,8,0.3),  0 0 50px rgba(122,6,0,0.25); }
+  50%      { text-shadow: 0 0 34px rgba(156,18,8,0.55), 0 0 80px rgba(122,6,0,0.45); }
+}
 .final p { font-size: clamp(17px, 1.6vw, 21px); color: var(--cream-faint); margin-bottom: 40px; }
 
 .waitlist { display: flex; gap: 10px; max-width: 480px; margin: 0 auto; }
