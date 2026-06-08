@@ -482,14 +482,19 @@ section { position: relative; }
   50%      { text-shadow: 0 0 34px rgba(156,18,8,0.55), 0 0 80px rgba(122,6,0,0.45); }
 }
 
-/* glow no texto dos botoes (Saiba Mais + Entrar na lista do CTA) */
+/* glow neon no texto dos botoes (Saiba Mais + Entrar na lista do CTA) */
 .btn--textglow {
-  text-shadow: 0 0 12px rgba(255,58,45,0.5), 0 0 28px rgba(156,18,8,0.4);
-  animation: btnTextGlow 3.2s ease-in-out infinite;
+  animation: btnTextGlow 1.6s ease-in-out infinite alternate;
 }
 @keyframes btnTextGlow {
-  0%, 100% { text-shadow: 0 0 10px rgba(255,58,45,0.4), 0 0 22px rgba(156,18,8,0.3); }
-  50%      { text-shadow: 0 0 16px rgba(255,58,45,0.7), 0 0 36px rgba(156,18,8,0.55); }
+  from {
+    text-shadow: 0 0 6px rgba(255,240,210,0.6), 0 0 12px rgba(255,58,45,0.7),
+                 0 0 20px rgba(156,18,8,0.7), 0 0 32px rgba(122,6,0,0.6);
+  }
+  to {
+    text-shadow: 0 0 10px rgba(255,240,210,0.8), 0 0 20px rgba(255,58,45,0.9),
+                 0 0 34px rgba(156,18,8,0.85), 0 0 52px rgba(122,6,0,0.8);
+  }
 }
 .final p { font-size: clamp(17px, 1.6vw, 21px); color: var(--cream-faint); margin-bottom: 40px; }
 
