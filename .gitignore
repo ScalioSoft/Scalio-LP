@@ -20,6 +20,11 @@ yarn-error.log*
 .cache/
 .tmp/
 
+# Scripts/screenshots temporarios de preview
+_*.py
+_*.png
+nul
+
 # Build / deploy
 dist/
 build/
