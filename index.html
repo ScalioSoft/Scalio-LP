@@ -20,13 +20,12 @@
     <a href="#planos">Valores</a>
   </div>
   <div class="nav__right">
-    <a class="btn btn--ghost btn--textglow" href="#waitlist">Saiba Mais</a>
+    <a class="btn btn--ghost btn--glow" href="#waitlist">Saiba Mais</a>
   </div>
 </nav>
 
 <!-- ================= HERO ================= -->
 <header class="hero" id="top">
-  <div class="hero__photo" aria-hidden="true"></div>
   <div class="hero__grid"></div>
   <div class="hero__glow"></div>
   <div class="wrap hero__inner">
@@ -42,6 +41,48 @@
     <div class="hero__cta reveal in reveal-d2">
       <a class="btn btn--solid btn--lg" href="#waitlist">Entrar na lista <span class="arrow">→</span></a>
       <a class="btn btn--ghost btn--lg" href="#solucao">Ver como funciona</a>
+    </div>
+
+    <!-- Mockup + cards flutuantes (estilo Pierre) -->
+    <div class="hero__stage reveal reveal-d3">
+      <div class="hero__card hero__card--1" aria-hidden="true">
+        <span class="hero__card-ic">✓</span>
+        <div><b>Relatório enviado</b><small>Cliente recebeu · 12s</small></div>
+      </div>
+      <div class="hero__card hero__card--2" aria-hidden="true">
+        <span class="hero__card-ic">◎</span>
+        <div><b>Check-in geo</b><small>−23.561, −46.655</small></div>
+      </div>
+      <div class="hero__card hero__card--3" aria-hidden="true">
+        <span class="wave"><i></i><i></i><i></i><i></i><i></i></span>
+        <div><b>Áudio → Relatório IA</b><small>transcrevendo…</small></div>
+      </div>
+
+      <div class="phone phone--hero">
+        <div class="phone__notch"></div>
+        <div class="phone__screen">
+          <div class="app__bar">
+            <div>
+              <h4>Instalação · Visita #2841</h4>
+              <div class="meta">GPS ✓ · 14:02 · Offline-ready</div>
+            </div>
+          </div>
+          <div style="padding:0 18px;background:var(--ink);">
+            <div class="app__progress"><i style="width:60%"></i></div>
+          </div>
+          <div class="app__body">
+            <div class="app__step done"><span class="box">✓</span><span class="label">Identificação do local</span><span class="tic">geo</span></div>
+            <div class="app__step done"><span class="box">✓</span><span class="label">Foto — antes</span><span class="tic">2</span></div>
+            <div class="app__step active"><span class="box"></span><span class="label">Serial do equipamento</span><span class="tic">obrig.</span></div>
+            <div class="app__step"><span class="box"></span><span class="label">Foto — depois</span><span class="tic">0/2</span></div>
+            <div class="app__photos">
+              <div class="app__photo">ANTES</div>
+              <div class="app__photo">DEPOIS</div>
+            </div>
+          </div>
+          <div class="app__cta">Áudio gravado · gerar relatório</div>
+        </div>
+      </div>
     </div>
   </div>
 </header>
@@ -409,7 +450,7 @@
       <p class="reveal reveal-d1">Suporte exclusivo e direto. Entre na lista e seja um dos primeiros a operar sem processos perdidos.</p>
       <form class="waitlist reveal reveal-d2" id="waitlistForm" novalidate>
         <input type="email" id="email" placeholder="seu@email.com" aria-label="Seu e-mail" />
-        <button class="btn btn--wine btn--lg btn--textglow" type="submit">Entrar na lista <span class="arrow">→</span></button>
+        <button class="btn btn--wine btn--lg btn--glow" type="submit">Entrar na lista <span class="arrow">→</span></button>
       </form>
       <div class="waitlist__msg reveal reveal-d2" id="waitlistMsg"></div>
     </div>
