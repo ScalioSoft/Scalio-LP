@@ -184,7 +184,7 @@ section { position: relative; }
   font-weight: 700; line-height: 0.9; letter-spacing: -0.04em;
   margin-bottom: 30px; text-transform: uppercase;
 }
-.hero h1 .accent { color: var(--wine-bright); font-style: italic; font-weight: 300; text-transform: none; }
+.hero h1 .accent { color: var(--wine-bright); font-style: italic; font-weight: 300; }
 .hero__sub {
   font-size: clamp(17px, 1.6vw, 21px); line-height: 1.5; max-width: 620px;
   color: var(--cream-faint); margin: 0 auto 40px;
