@@ -453,9 +453,17 @@
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  /* ---- Duplicate ticker for seamless loop ---- */
+  /* ---- Ticker: repeat until it overflows the viewport, then duplicate
+         the whole set so the -50% loop is seamless (no empty gap) ---- */
   const ticker = document.getElementById('ticker');
+  const tickerBase = ticker.innerHTML;
+  while (ticker.scrollWidth < window.innerWidth * 2) {
+    ticker.innerHTML += tickerBase;
+  }
   ticker.innerHTML += ticker.innerHTML;
+  /* keep a constant scroll speed regardless of content length */
+  const TICKER_SPEED = 70; // px per second
+  ticker.style.animationDuration = (ticker.scrollWidth / 2 / TICKER_SPEED) + 's';
 
   /* ---- Reveal on scroll ---- */
   const io = new IntersectionObserver((entries) => {
