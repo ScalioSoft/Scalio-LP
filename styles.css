@@ -200,13 +200,18 @@ section { position: relative; }
 }
 .phone--hero { margin: 0 auto; box-shadow: 0 50px 100px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,240,210,0.05); }
 
-/* ---- Celular 3D: mesma entrada girando da página de login (Phone3D) ---- */
-.phone3d {
-  perspective: 1700px;
-  animation: phoneFloat 7s ease-in-out 1.4s infinite;
-}
+/* ---- Celular 3D: entra girando (igual ao login) só ao rolar até o hero ----
+   Repouso é o estado padrão (fallback p/ reduced-motion via guarda global);
+   o giro só dispara quando o IntersectionObserver marca o estágio com .in. */
+.phone3d { perspective: 1700px; }
 .phone--hero {
   transform-style: preserve-3d;
+  transform: rotateX(10deg) rotateY(-26deg) rotateZ(4deg);
+}
+.hero__stage.in .phone3d {
+  animation: phoneFloat 7s ease-in-out 1.4s infinite;
+}
+.hero__stage.in .phone--hero {
   animation: phoneIn 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
 }
 @keyframes phoneIn {
@@ -217,10 +222,6 @@ section { position: relative; }
 @keyframes phoneFloat {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(-14px); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .phone3d { animation: none; }
-  .phone--hero { animation: none; transform: rotateX(10deg) rotateY(-26deg) rotateZ(4deg); }
 }
 .hero__card {
   position: absolute; z-index: 4; display: flex; align-items: center; gap: 12px; text-align: left;
