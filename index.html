@@ -354,7 +354,7 @@
           <li><span class="ic">—</span> Localização em tempo real</li>
           <li><span class="ic">—</span> NF-e · Estoque · Auditoria</li>
         </ul>
-        <button class="plan__btn">Entrar na lista <span class="arrow">→</span></button>
+        <button class="plan__btn" data-plan="basico" data-price="R$97">Assinar agora <span class="arrow">→</span></button>
       </article>
 
       <!-- Pro -->
@@ -376,7 +376,7 @@
         <ul class="plan__nots">
           <li><span class="ic">—</span> Auditoria · Facial · Multi-CNPJ</li>
         </ul>
-        <button class="plan__btn">Entrar na lista <span class="arrow">→</span></button>
+        <button class="plan__btn" data-plan="pro" data-price="R$297">Assinar agora <span class="arrow">→</span></button>
       </article>
 
       <!-- Elite -->
@@ -395,7 +395,7 @@
           <li><span class="ic">✓</span> Campanhas WhatsApp em massa</li>
           <li><span class="ic">✓</span> TEF integrado · pagamento em campo</li>
         </ul>
-        <button class="plan__btn">Entrar na lista <span class="arrow">→</span></button>
+        <button class="plan__btn" data-plan="elite" data-price="R$597">Assinar agora <span class="arrow">→</span></button>
       </article>
     </div>
   </div>
@@ -447,6 +447,74 @@
     </div>
   </div>
 </footer>
+
+<!-- ================= MODAL — CHECKOUT ================= -->
+<div class="checkout-overlay" id="checkoutOverlay" hidden>
+  <div class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+    <button class="checkout-close" id="checkoutClose" type="button" aria-label="Fechar">×</button>
+
+    <h3 id="checkoutTitle">Assinar <span id="checkoutPlanName">Básico</span></h3>
+    <p class="checkout-sub">7 dias grátis, sem cobrança agora. Depois, <span id="checkoutPlanPrice">R$97</span>/mês. Cancele quando quiser.</p>
+
+    <form id="checkoutForm" novalidate>
+      <div class="checkout-grid">
+        <label>Nome completo
+          <input type="text" id="ckName" required autocomplete="name" />
+        </label>
+        <label>Empresa
+          <input type="text" id="ckCompany" required autocomplete="organization" />
+        </label>
+      </div>
+      <div class="checkout-grid">
+        <label>E-mail
+          <input type="email" id="ckEmail" required autocomplete="email" />
+        </label>
+        <label>Telefone
+          <input type="tel" id="ckPhone" required autocomplete="tel" placeholder="(11) 91234-5678" />
+        </label>
+      </div>
+      <div class="checkout-grid">
+        <label>CPF ou CNPJ
+          <input type="text" id="ckDocument" required inputmode="numeric" />
+        </label>
+        <label>CEP
+          <input type="text" id="ckPostalCode" required inputmode="numeric" placeholder="00000-000" />
+        </label>
+      </div>
+      <label>Número do endereço
+        <input type="text" id="ckAddressNumber" required inputmode="numeric" />
+      </label>
+
+      <hr class="checkout-divider" />
+
+      <label>Nome impresso no cartão
+        <input type="text" id="ckCardHolder" required autocomplete="cc-name" />
+      </label>
+      <div class="checkout-grid">
+        <label>Número do cartão
+          <input type="text" id="ckCardNumber" required inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000" />
+        </label>
+        <label>CVV
+          <input type="text" id="ckCardCcv" required inputmode="numeric" autocomplete="cc-csc" maxlength="4" placeholder="000" />
+        </label>
+      </div>
+      <div class="checkout-grid">
+        <label>Mês de validade
+          <input type="text" id="ckCardMonth" required inputmode="numeric" autocomplete="cc-exp-month" placeholder="MM" maxlength="2" />
+        </label>
+        <label>Ano de validade
+          <input type="text" id="ckCardYear" required inputmode="numeric" autocomplete="cc-exp-year" placeholder="AAAA" maxlength="4" />
+        </label>
+      </div>
+
+      <div class="checkout-msg" id="checkoutMsg"></div>
+
+      <button class="btn btn--wine btn--lg btn--glow checkout-submit" type="submit" id="checkoutSubmit">
+        Começar teste de 7 dias <span class="arrow">→</span>
+      </button>
+    </form>
+  </div>
+</div>
 
 <script>
   /* ---- Nav scroll state ---- */
@@ -520,14 +588,94 @@
     form.querySelector('button').textContent = 'Confirmado ✓';
   });
 
-  /* plan CTAs jump to waitlist */
+  /* ---- Checkout (Asaas via Scalio-Backend) ---- */
+  // Trocar pela URL de produção do Back antes do deploy.
+  const CHECKOUT_API_BASE = 'http://localhost:8000/api/v1';
+
+  const PLAN_LABEL = { basico: 'Básico', pro: 'Pro', elite: 'Elite' };
+
+  const ckOverlay = document.getElementById('checkoutOverlay');
+  const ckForm = document.getElementById('checkoutForm');
+  const ckMsg = document.getElementById('checkoutMsg');
+  const ckSubmit = document.getElementById('checkoutSubmit');
+  const ckPlanName = document.getElementById('checkoutPlanName');
+  const ckPlanPrice = document.getElementById('checkoutPlanPrice');
+  let selectedPlan = null;
+
+  function openCheckout(plan, price) {
+    selectedPlan = plan;
+    ckPlanName.textContent = PLAN_LABEL[plan] || plan;
+    ckPlanPrice.textContent = price;
+    ckMsg.className = 'checkout-msg';
+    ckMsg.textContent = '';
+    ckForm.reset();
+    ckOverlay.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCheckout() {
+    ckOverlay.hidden = true;
+    document.body.style.overflow = '';
+  }
+
   document.querySelectorAll('.plan__btn').forEach((b) => {
-    b.addEventListener('click', () => {
-      const target = document.getElementById('waitlist');
-      const y = target.getBoundingClientRect().top + window.scrollY - 40;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-      setTimeout(() => email.focus({ preventScroll: true }), 600);
-    });
+    b.addEventListener('click', () => openCheckout(b.dataset.plan, b.dataset.price));
+  });
+
+  document.getElementById('checkoutClose').addEventListener('click', closeCheckout);
+  ckOverlay.addEventListener('click', (ev) => { if (ev.target === ckOverlay) closeCheckout(); });
+  document.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape' && !ckOverlay.hidden) closeCheckout();
+  });
+
+  ckForm.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    ckMsg.className = 'checkout-msg';
+    ckMsg.textContent = '';
+
+    const payload = {
+      plan: selectedPlan,
+      companyName: document.getElementById('ckCompany').value.trim(),
+      name: document.getElementById('ckName').value.trim(),
+      email: document.getElementById('ckEmail').value.trim(),
+      phone: document.getElementById('ckPhone').value.trim(),
+      document: document.getElementById('ckDocument').value.trim(),
+      postalCode: document.getElementById('ckPostalCode').value.trim(),
+      addressNumber: document.getElementById('ckAddressNumber').value.trim(),
+      cardHolderName: document.getElementById('ckCardHolder').value.trim(),
+      cardNumber: document.getElementById('ckCardNumber').value.replace(/\s+/g, ''),
+      cardExpiryMonth: document.getElementById('ckCardMonth').value.trim(),
+      cardExpiryYear: document.getElementById('ckCardYear').value.trim(),
+      cardCcv: document.getElementById('ckCardCcv').value.trim(),
+    };
+
+    ckSubmit.disabled = true;
+    ckSubmit.textContent = 'Processando...';
+
+    try {
+      let resp;
+      try {
+        resp = await fetch(`${CHECKOUT_API_BASE}/checkout`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+      } catch {
+        throw new Error('Não foi possível conectar. Verifique sua internet e tente novamente.');
+      }
+      const data = await resp.json().catch(() => ({}));
+      if (!resp.ok) {
+        throw new Error(data.detail || 'Não foi possível processar sua assinatura.');
+      }
+      ckMsg.classList.add('ok');
+      ckMsg.textContent = '✓ Conta criada! Verifique seu e-mail para definir a senha e acessar o Scalio.';
+      ckSubmit.textContent = 'Conta criada ✓';
+    } catch (err) {
+      ckMsg.classList.add('bad');
+      ckMsg.textContent = err.message || 'Erro ao processar. Tente novamente.';
+      ckSubmit.disabled = false;
+      ckSubmit.innerHTML = 'Começar teste de 7 dias <span class="arrow">→</span>';
+    }
   });
 </script>
 </body>
